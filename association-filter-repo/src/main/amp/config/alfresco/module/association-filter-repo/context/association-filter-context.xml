@@ -23,6 +23,17 @@
                            http://www.springframework.org/schema/util
                            http://www.springframework.org/schema/util/spring-util-2.0.xsd">
 
+	<!-- Database scripts to run on creation of database -->
+
+	<bean id="patch.db-V5.0-AssociationFilterViewsUpgrade" class="com.ixxus.associationFilter.patch.impl.SchemaUpgradeMapperPatch" parent="basePatch">
+		<property name="sqlSessionTemplate" ref="ixxusSQLSessionTemplate" />
+		<property name="id"><value>patch.db-V5.0-AssociationFilterViewsUpgrade</value></property>
+		<property name="description"><value>patch.schemaUpgradeScript.description</value></property>
+		<property name="fixesFromSchema"><value>0</value></property>
+		<property name="fixesToSchema"><value>${version.schema}</value></property>
+		<property name="targetSchema"><value>10000</value></property>
+	</bean>
+
 	<!-- http://www.slideshare.net/slemarchand/using-mybatis-in-alfresco-custom-extensions-alfresco-devcon-2012-berlin -->
 	<!-- MyBatis config for Alfresco testing (using common datasource) -->
 	<bean id="ixxusSqlSessionFactory" class="org.alfresco.ibatis.HierarchicalSqlSessionFactoryBean">
