@@ -23,7 +23,11 @@
                            http://www.springframework.org/schema/util
                            http://www.springframework.org/schema/util/spring-util-2.0.xsd">
 
+
+	<bean id="filterEntityFactory" class="com.ixxus.associationFilter.objects.factories.FilterEntityFactory"/>
+
 	<bean id="ixxus-association-filter" class="com.ixxus.associationFilter.api.AssociationFilterImpl">
-		<property name="cannedQueryFactory" ref="AssociationFilterCannedQueryFactory"/>
+		<property name="cannedQueryFactory" ref="associationFilterCannedQueryFactory"/>
+		<property name="filterFactory" ref="filterEntityFactory"/>
 	</bean>
 </beans>

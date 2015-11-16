@@ -9,26 +9,14 @@
 <beans>
 
     <!-- Database scripts to run on creation of database -->
-    <bean id="schema.create.association-filter" class="org.alfresco.repo.domain.schema.SchemaBootstrapRegistration" init-method="register">
-        <property name="schemaBootstrap" ref="schemaBootstrap"/>
-        <property name="postCreateScriptUrls">
-            <list>
-                <value>classpath:alfresco/module/${project.artifactId}/dbscripts/create/${db.script.dialect}/AssociationCreate-CoreViews.sql</value>
-            </list>
-        </property>
-    </bean>
 
-<!--
-    <bean id="patch.db-V5.0-AssociationFilterViewsUpgrade" class="org.alfresco.repo.admin.patch.impl.SchemaUpgradeScriptPatch" parent="basePatch">
+    <bean id="patch.db-V5.0-AssociationFilterViewsUpgrade" class="com.ixxus.associationFilter.patch.impl.SchemaUpgradeMapperPatch" parent="basePatch">
+        <property name="sqlSessionTemplate" ref="ixxusSQLSessionTemplate" />
         <property name="id"><value>patch.db-V5.0-AssociationFilterViewsUpgrade</value></property>
         <property name="description"><value>patch.schemaUpgradeScript.description</value></property>
         <property name="fixesFromSchema"><value>0</value></property>
-        <property name="fixesToSchema" value="5022" />
-        <property name="targetSchema" value="5023" />
-        <property name="force" value="true" />
-        <property name="scriptUrl">
-            <value>classpath:alfresco/module/${project.artifactId}/dbscripts/upgrade/5.0/${db.script.dialect}/AssociationUpgrade-CoreViews.sql</value>
-        </property>
+        <property name="fixesToSchema"><value>${version.schema}</value></property>
+        <property name="targetSchema"><value>10000</value></property>
     </bean>
--->
+
 </beans>

@@ -25,7 +25,7 @@
 
 	<!-- http://www.slideshare.net/slemarchand/using-mybatis-in-alfresco-custom-extensions-alfresco-devcon-2012-berlin -->
 	<!-- MyBatis config for Alfresco testing (using common datasource) -->
-	<bean id="IxxusSqlSessionFactory" class="org.alfresco.ibatis.HierarchicalSqlSessionFactoryBean">
+	<bean id="ixxusSqlSessionFactory" class="org.alfresco.ibatis.HierarchicalSqlSessionFactoryBean">
 		<property name="resourceLoader" ref="dialectResourceLoader"/>
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation">
@@ -33,12 +33,12 @@
 		</property>
 	</bean>
 
-	<bean id="IxxusSQLSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="IxxusSqlSessionFactory"/>
+	<bean id="ixxusSQLSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="ixxusSqlSessionFactory"/>
 	</bean>
 
-	<bean id="IxxusCannedQueryDAO" class="org.alfresco.repo.domain.query.ibatis.CannedQueryDAOImpl" init-method="init">
-		<property name="sqlSessionTemplate" ref="IxxusSQLSessionTemplate"/>
+	<bean id="ixxusCannedQueryDAO" class="org.alfresco.repo.domain.query.ibatis.CannedQueryDAOImpl" init-method="init">
+		<property name="sqlSessionTemplate" ref="ixxusSQLSessionTemplate"/>
 		<property name="controlDAO" ref="controlDAO"/>
 	</bean>
 
@@ -46,14 +46,14 @@
 		<property name="storageType" value="org.alfresco.query.CannedQueryFactory"/>
 	</bean>
 
-	<bean id="AssociationFilterCannedQueryFactory" class="com.ixxus.associationFilter.cannedquery.AssociationFilterCannedQueryFactory">
+	<bean id="associationFilterCannedQueryFactory" class="com.ixxus.associationFilter.cannedquery.AssociationFilterCannedQueryFactory">
 		<property name="registry" ref="associationFilterCannedQueryRegistry"/>
 		<property name="tenantService" ref="tenantService"/>
 		<property name="nodeDAO" ref="nodeDAO"/>
 		<property name="qnameDAO" ref="qnameDAO"/>
-		<property name="cannedQueryDAO" ref="IxxusCannedQueryDAO"/>
+		<property name="cannedQueryDAO" ref="ixxusCannedQueryDAO"/>
 		<!-- Find a new methodSecurity at some point -->
-		<property name="methodSecurity" ref="AuthorityService_security_getAuthorities"/>
+		<property name="methodSecurity" ref="FileFolderService_security_list"/>
 	</bean>
 
 </beans>

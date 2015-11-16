@@ -12,8 +12,8 @@ import java.util.List;
  * Created by Ixxus on 11/13/2015.
  */
 public class AssociationFilterCannedQuery extends AbstractCannedQueryPermissions<Association> {
-    private static final String QUERY_NAMESPACE                 = "ixxus.association-filter";
-    private static final String QUERY_SELECT_NAME               = "select_AssociationFilterByTypeQuery";
+    private static final String QUERY_NAMESPACE                 = "com.ixxus.associationFilter.patch.impl.IxxusAssociationFilterMapper";
+    private static final String QUERY_SELECT_NAME               = "selectAssociationFilterByTypeQuery";
 
     private final CannedQueryDAO cannedQueryDAO;
 

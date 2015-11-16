@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="ixxus.association-filter">
+<mapper namespace="com.ixxus.associationFilter.patch.impl.IxxusAssociationFilterMapper">
 
     <!--                -->
     <!-- Result Maps    -->
@@ -14,7 +14,7 @@
         <result property="associationType" column="associationType" jdbcType="VARCHAR" javaType="java.lang.String"/>
     </resultMap>
 
-    <select id="select_AssociationFilterByTypeQuery" parameterType="AssociationFilterQueryParameters"
+    <select id="selectAssociationFilterByTypeQuery" parameterType="AssociationFilterQueryParameters"
             resultMap="result_Association">
         SELECT DISTINCT
         SourceNodeRef   as "sourceNodeRef",
@@ -30,5 +30,30 @@
         AssociationType
         ;
     </select>
+
+    <insert id="createNodeRefByIdView" >
+        CREATE VIEW view_node_ref_and_id AS
+            SELECT
+                CONCAT(alf_store.protocol, "://", alf_store.identIFier, "/", alf_node.uuid) AS "NodeRef",
+                alf_node.id AS "ID"
+            FROM
+                alf_node
+                INNER JOIN alf_store ON alf_node.store_id = alf_store.id
+            WHERE
+                alf_store.protocol = "workspace"
+        ;
+    </insert>
+    <insert id="createAssociationByTypeView" >
+        CREATE VIEW view_associations_by_type AS
+            SELECT
+                view_source.NodeRef as "SourceNodeRef",
+                alf_qname.local_name COLLATE utf8_general_ci AS "AssociationType",
+                view_target.NodeRef as "TargetNodeRef"
+            FROM
+                alf_node_assoc AS ANA
+            JOIN view_node_ref_and_id AS view_source ON ANA.source_node_id = view_source.ID
+            JOIN view_node_ref_and_id AS view_target ON ANA.target_node_id = view_target.ID
+            JOIN alf_qname ON alf_qname.id = ANA.type_qname_id;
+    </insert>
 
 </mapper>

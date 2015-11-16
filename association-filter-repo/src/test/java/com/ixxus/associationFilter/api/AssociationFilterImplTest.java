@@ -33,10 +33,6 @@ public class AssociationFilterImplTest extends BaseTest {
     @Qualifier("ixxus-association-filter")
     protected AssociationFilter associationFilter;
 
-    @Autowired
-    @Qualifier("retryingTransactionHelper")
-    private RetryingTransactionHelper retryingTransactionHelper;
-
     private static final String TEST_FOLDER_NAME = "test-folder";
     private static final String CHILD_CONTENT_A_NAME = "test-content-a";
     private static final String CHILD_CONTENT_B_NAME = "test-content-b";
@@ -123,5 +119,20 @@ public class AssociationFilterImplTest extends BaseTest {
         List<Association> associations = associationFilter.getAssociationsByFilters(Arrays.asList(filterTestFolderContains));
         System.out.println(associations.toString());
         Assert.assertEquals("Should have two associations", 2, associations.size());
+    }
+
+    @Test
+    public void testGetAssociationsByFilters() throws Exception {
+
+    }
+
+    @Test
+    public void testGetFiltersForTargetOf() throws Exception {
+
+    }
+
+    @Test
+    public void testGetFiltersWithSourceOf() throws Exception {
+
     }
 }

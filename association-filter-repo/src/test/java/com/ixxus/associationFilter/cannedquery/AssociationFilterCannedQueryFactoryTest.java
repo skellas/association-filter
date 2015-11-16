@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class AssociationFilterCannedQueryFactoryTest extends BaseTest{
 
     @Autowired
-    @Qualifier("AssociationFilterCannedQueryFactory")
+    @Qualifier("associationFilterCannedQueryFactory")
     AssociationFilterCannedQueryFactory factory;
     @Test
     public void testGetCannedQueryViaFilters() throws Exception {
