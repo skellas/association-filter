@@ -16,8 +16,10 @@ public interface AssociationFilter {
     List<Association> getAssociationsByFilters(List<Filter> filters);
 
     List<Filter> getFiltersForTargetOf(List<NodeRef> targetNodeRefs, QName associationType);
+    List<Filter> getFiltersForTargetOf(List<String> targetNodeRefs, String associationType);
 
     List<Filter> getFiltersWithSourceOf(List<NodeRef> sourceNodeRefs, QName associationType);
+    List<Filter> getFiltersWithSourceOf(List<String> sourceNodeRefs, String associationType);
 
     void setCannedQueryFactory(AbstractCannedQueryFactory cannedQueryFactory);
 

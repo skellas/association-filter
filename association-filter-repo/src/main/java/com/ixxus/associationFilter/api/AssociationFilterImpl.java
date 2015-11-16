@@ -33,11 +33,25 @@ public class AssociationFilterImpl implements AssociationFilter {
         }
         return filters;
     }
+    @Override public List<Filter> getFiltersForTargetOf(List<String> targetNodeRefs, String associationType) {
+        List<Filter> filters = new ArrayList<>(targetNodeRefs.size());
+        for (String targetNodeRef : targetNodeRefs) {
+            filters.add(filterFactory.getFilter("", associationType, targetNodeRef));
+        }
+        return filters;
+    }
 
     @Override public List<Filter> getFiltersWithSourceOf(List<NodeRef> sourceNodeRefs, QName associationType) {
         List<Filter> filters = new ArrayList<>(sourceNodeRefs.size());
         for (NodeRef sourceNodeRef : sourceNodeRefs) {
             filters.add(filterFactory.getFilter(sourceNodeRef, associationType, null));
+        }
+        return filters;
+    }
+    @Override public List<Filter> getFiltersWithSourceOf(List<String> sourceNodeRefs, String associationType) {
+        List<Filter> filters = new ArrayList<>(sourceNodeRefs.size());
+        for (String sourceNodeRef : sourceNodeRefs) {
+            filters.add(filterFactory.getFilter(sourceNodeRef, associationType, ""));
         }
         return filters;
     }

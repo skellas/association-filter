@@ -1,0 +1,19 @@
+<webscript>
+    <shortname>Association Filters - Get Source Associations By Target Node Ref</shortname>
+    <description>
+        <![CDATA[
+          Find all particular NodeRefs that are have an association of
+          type {associationType} that point to {targetNodeRef}.
+          ]]>
+    </description>
+
+    <url>/ixxus/associationFilter/v1/associationsByTargetNodeRef/{associationType}/{targetNodeRef}</url>
+    <url>/ixxus/af/v1/abtn/{associationType}/{targetNodeRef}</url>
+
+    <args/>
+
+    <format default="json">argument</format>
+
+    <authentication>user</authentication>
+    <transaction allow="readonly"/>
+</webscript>

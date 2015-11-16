@@ -23,4 +23,11 @@
                            http://www.springframework.org/schema/util
                            http://www.springframework.org/schema/util/spring-util-2.0.xsd">
 
+	<bean id="webscript.com.ixxus.associationFilters.associationsByTargetNodeRef.get"
+		  class="com.ixxus.associationFilter.api.webscripts.GetAssociationsByTargetNodeRef"
+		  parent="webscript">
+		<property name="serviceRegistry" ref="ServiceRegistry" />
+		<property name="associationFilter" ref="ixxus-association-filter"/>
+
+	</bean>
 </beans>

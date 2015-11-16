@@ -4,5 +4,5 @@
 @echo off
 
 set MAVEN_OPTS=
-mvn install -Penterprise -Prun -nsu
+mvn clean install -Penterprise -Prun -nsu
 :: mvn install -Penterprise -Prun

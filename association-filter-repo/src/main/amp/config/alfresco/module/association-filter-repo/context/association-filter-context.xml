@@ -64,7 +64,7 @@
 		<property name="qnameDAO" ref="qnameDAO"/>
 		<property name="cannedQueryDAO" ref="ixxusCannedQueryDAO"/>
 		<!-- Find a new methodSecurity at some point -->
-		<property name="methodSecurity" ref="FileFolderService_security_list"/>
+		<property name="methodSecurity" ref="AuthorityService_security_getAuthorities"/>
 	</bean>
 
 </beans>

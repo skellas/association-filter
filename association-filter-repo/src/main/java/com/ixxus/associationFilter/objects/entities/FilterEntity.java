@@ -36,15 +36,15 @@ public class FilterEntity implements Filter{
     }
     public String filterString() {
         StringBuilder sb = new StringBuilder();
-        if (!"".equals(this.getSourceNodeRef())) {
+        if (exists(this.getSourceNodeRef())) {
             sb.append(queryModifier(sb));
             sb.append(" SourceNodeRef = " + '"' + this.getSourceNodeRef() + '"');
         }
-        if (!"".equals(this.getAssociationType())) {
+        if (exists(this.getAssociationType())) {
             sb.append(queryModifier(sb));
             sb.append(" AssociationType = " + '"' + this.getAssociationType() + '"');
         }
-        if (!"".equals(this.getTargetNodeRef())) {
+        if (exists(this.getTargetNodeRef())) {
             sb.append(queryModifier(sb));
             sb.append(" TargetNodeRef = " + '"' + this.getTargetNodeRef() + '"');
         }
@@ -55,6 +55,16 @@ public class FilterEntity implements Filter{
     protected  String queryModifier(StringBuilder sb) { return sb.length() > 0 ? " and " : "" ;}
     /* Getters and Setters */
 
+    private boolean exists(String value) {
+        if (null == value)
+            return false;
+        if ("".equalsIgnoreCase(value))
+            return false;
+        if ("null".equalsIgnoreCase(value))
+            return false;
+
+        return true;
+    }
     public String getAssociationType() {
         return associationType;
     }

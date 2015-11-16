@@ -30,11 +30,12 @@ public class AssociationFilterQueryParameters {
         Iterator<Filter> iter = filters.iterator();
         while (iter.hasNext()) {
             Filter entity = iter.next();
-
-            sb.append("(" + entity.filterString() + ")");
-            if (iter.hasNext()) sb.append( " OR " );
+            if (entity.isValid()) {
+                sb.append("(" + entity.filterString() + ")");
+                if (iter.hasNext())
+                    sb.append(" OR ");
+            }
         }
-        System.out.println(sb.toString());
         return sb.toString();
     }
 
