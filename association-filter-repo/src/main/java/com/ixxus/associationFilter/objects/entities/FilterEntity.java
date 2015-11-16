@@ -79,6 +79,23 @@ public class FilterEntity implements Filter{
         this.sourceNodeRef = sourceNodeRef;
     }
 
+    /**
+     * This tests to see if the filter is valid.
+     * A filter must have at least one of its NodeRefs filled.
+     * A filter should have an AssociationType, though technically it doesn't have to.
+     * @return if the filter is valid to run against the database
+     */
+    public boolean isValid() {
+        // default to assuming they all exist
+        boolean hasSourceNodeRef = true, hasAssociationType = true, hasTargetNodeRef = true;
+        // test to see if each individual property hasn't been filled in
+        if (null == sourceNodeRef || "".equalsIgnoreCase(sourceNodeRef))
+            hasSourceNodeRef = false;
+        if (null == targetNodeRef || "".equalsIgnoreCase(targetNodeRef))
+            hasTargetNodeRef = false;
+
+        return (hasSourceNodeRef || hasTargetNodeRef);
+    }
     @Override
     public String toString() {
         String spacer = "   ";

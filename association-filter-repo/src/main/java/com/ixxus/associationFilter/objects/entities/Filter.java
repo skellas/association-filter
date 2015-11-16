@@ -16,4 +16,6 @@ public interface Filter {
     String getSourceNodeRef();
 
     void setSourceNodeRef(String sourceNodeRef);
+
+    boolean isValid();
 }
