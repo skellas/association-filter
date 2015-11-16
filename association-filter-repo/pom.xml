@@ -24,16 +24,23 @@
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco-repository</artifactId>
         </dependency>
-
-        <!-- Uncomment if you are using RM (Records Management) module, brings in RM related classes -->
-        <!--
         <dependency>
-            <groupId>${alfresco.groupId}</groupId>
-            <artifactId>alfresco-rm</artifactId>
-            <version>${alfresco.rm.version}</version>
-            <classifier>classes</classifier>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.32</version>
         </dependency>
-        -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.2.0</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+
     </dependencies>
 
     <profiles>

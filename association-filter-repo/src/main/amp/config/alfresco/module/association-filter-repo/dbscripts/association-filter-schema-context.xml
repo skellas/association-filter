@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+
+<!--
+    Database scripts and patches
+-->
+
+<beans>
+
+    <!-- Database scripts to run on creation of database -->
+    <bean id="schema.create.association-filter" class="org.alfresco.repo.domain.schema.SchemaBootstrapRegistration" init-method="register">
+        <property name="schemaBootstrap" ref="schemaBootstrap"/>
+        <property name="postCreateScriptUrls">
+            <list>
+                <value>classpath:alfresco/module/${project.artifactId}/dbscripts/create/${db.script.dialect}/AssociationCreate-CoreViews.sql</value>
+            </list>
+        </property>
+    </bean>
+
+<!--
+    <bean id="patch.db-V5.0-AssociationFilterViewsUpgrade" class="org.alfresco.repo.admin.patch.impl.SchemaUpgradeScriptPatch" parent="basePatch">
+        <property name="id"><value>patch.db-V5.0-AssociationFilterViewsUpgrade</value></property>
+        <property name="description"><value>patch.schemaUpgradeScript.description</value></property>
+        <property name="fixesFromSchema"><value>0</value></property>
+        <property name="fixesToSchema" value="5022" />
+        <property name="targetSchema" value="5023" />
+        <property name="force" value="true" />
+        <property name="scriptUrl">
+            <value>classpath:alfresco/module/${project.artifactId}/dbscripts/upgrade/5.0/${db.script.dialect}/AssociationUpgrade-CoreViews.sql</value>
+        </property>
+    </bean>
+-->
+</beans>

@@ -23,4 +23,7 @@
                            http://www.springframework.org/schema/util
                            http://www.springframework.org/schema/util/spring-util-2.0.xsd">
 
+	<bean id="ixxus-association-filter" class="com.ixxus.associationFilter.api.AssociationFilterImpl">
+		<property name="cannedQueryFactory" ref="AssociationFilterCannedQueryFactory"/>
+	</bean>
 </beans>

@@ -39,6 +39,17 @@
         <alfresco.version>5.0.1</alfresco.version>
         <!-- The Alfresco Share web application is accessible via this URL -->
         <share.client.url>http://localhost:8080/share</share.client.url>
+
+        <!-- Use a MySQL database -->
+        <alfresco.db.name>alfresco</alfresco.db.name>
+        <alfresco.db.username>alfresco</alfresco.db.username>
+        <alfresco.db.password>alfresco</alfresco.db.password>
+        <alfresco.db.url>jdbc:mysql://localhost/${alfresco.db.name}?useUnicode=yes&amp;characterEncoding=UTF-8</alfresco.db.url>
+        <alfresco.db.datasource.class>org.gjt.mm.mysql.Driver</alfresco.db.datasource.class>
+
+        <alfresco.data.location>${project.parent.basedir}/alf_data_dev</alfresco.data.location>
+
+
     </properties>
 
     <!-- Here we realize the connection with the Alfresco selected platform (e.g.version and edition) -->
@@ -55,6 +66,11 @@
                 <version>${alfresco.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>rome</groupId>
+                <artifactId>rome</artifactId>
+                <version>1.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
