@@ -17,12 +17,12 @@ public class GetAssociationsByTargetNodeRef extends AbstractGetAssociations {
         Map<String, String> templateVars = request.getServiceMatch().getTemplateVars();
         Serializable targetNodeRefParam = templateVars.get(PARAM_TARGET_NODE_REF);
         LOGGER.debug("PARAM TARGET NODE REF : " + targetNodeRefParam);
-        return getAssociationFilter().getFiltersForTargetOf(Arrays.asList((String)targetNodeRefParam), getAssociationTypeFromRequest(request));
+        return getAssociationFilter().getFiltersForTargetOf(Arrays.asList(((String)targetNodeRefParam).split(",")), getAssociationTypeFromRequest(request));
     }
 
     @Override protected Map<String, Object> populateModelWithAssociations(List<Association> associations) {
         Map<String, Object> model = new HashMap<String, Object>(8, 1.0f);
-        List<NodeRef> nodeRefs = new ArrayList<>(associations.size());
+        Set<NodeRef> nodeRefs = new HashSet<>(associations.size());
         for (Association association : associations) {
             nodeRefs.add(new NodeRef(association.getSourceNodeRef()));
         }

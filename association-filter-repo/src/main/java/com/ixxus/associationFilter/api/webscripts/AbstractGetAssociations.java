@@ -3,12 +3,12 @@ package com.ixxus.associationFilter.api.webscripts;
 import com.ixxus.associationFilter.api.AssociationFilter;
 import com.ixxus.associationFilter.objects.entities.Association;
 import com.ixxus.associationFilter.objects.entities.Filter;
-import org.alfresco.service.ServiceRegistry;
-import org.json.JSONException;
 import org.alfresco.repo.jscript.ScriptNode;
+import org.alfresco.service.ServiceRegistry;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ImporterTopLevel;
@@ -18,10 +18,7 @@ import org.springframework.extensions.webscripts.DeclarativeWebScript;
 import org.springframework.extensions.webscripts.Status;
 import org.springframework.extensions.webscripts.WebScriptRequest;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Ixxus on 11/16/2015.
@@ -69,7 +66,7 @@ public abstract class AbstractGetAssociations extends DeclarativeWebScript {
     protected String getAssociationTypeFromRequest(WebScriptRequest request) {
         return (String)request.getServiceMatch().getTemplateVars().get(PARAM_ASSOCIATION_TYPE);
     }
-    protected List<JSONObject> convertNodesToJsonScriptNodes(List<NodeRef> nodeRefs) throws JSONException {
+    protected Collection<JSONObject> convertNodesToJsonScriptNodes(Collection<NodeRef> nodeRefs) throws JSONException {
 
         LOGGER.debug("wrapping " + nodeRefs.size() + " results");
         Scriptable scope;
