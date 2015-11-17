@@ -52,7 +52,7 @@ public class FilterEntity implements Filter{
         return sb.toString();
     }
 
-    protected  String queryModifier(StringBuilder sb) { return sb.length() > 0 ? " and " : "" ;}
+    protected  String queryModifier(StringBuilder sb) { return sb.length() > 0 ? " AND " : "" ;}
     /* Getters and Setters */
 
     private boolean exists(String value) {

@@ -5,17 +5,18 @@ package com.ixxus.associationFilter.objects.entities;
  */
 public interface Filter {
     String filterString();
-    String getAssociationType();
 
-    void setAssociationType(String associationType);
+    String getAssociationType() throws Exception;
 
-    String getTargetNodeRef();
+    void setAssociationType(String associationType) throws Exception;
 
-    void setTargetNodeRef(String targetNodeRef);
+    String getTargetNodeRef() throws Exception;
 
-    String getSourceNodeRef();
+    void setTargetNodeRef(String targetNodeRef) throws Exception;
 
-    void setSourceNodeRef(String sourceNodeRef);
+    String getSourceNodeRef() throws Exception;
+
+    void setSourceNodeRef(String sourceNodeRef) throws Exception;
 
     boolean isValid();
 }
