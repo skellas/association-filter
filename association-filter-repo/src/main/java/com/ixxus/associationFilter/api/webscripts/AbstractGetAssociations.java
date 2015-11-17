@@ -41,17 +41,25 @@ public abstract class AbstractGetAssociations extends DeclarativeWebScript {
         LOGGER.info("GetAssociations WebScript Called");
         Map<String, Object> model = new HashMap<String, Object>(8, 1.0f);
 
-        List<Filter> filters = getFiltersFromRequest(req);
-        LOGGER.debug("Filters.size() : " + filters.size());
-        LOGGER.trace("Filters.toString() : " + filters.toString());
+        try {
+            List<Filter> filters = getFiltersFromRequest(req);
+            LOGGER.debug("Filters.size() : " + filters.size());
+            LOGGER.trace("Filters.toString() : " + filters.toString());
 
-        List<Association> associations = associationFilter.getAssociationsByFilters(filters);
-        LOGGER.debug("Associations.size() : " + associations.size());
-        LOGGER.trace("Associations.toString() : " + associations.toString());
+            List<Association> associations = associationFilter.getAssociationsByFilters(filters);
+            LOGGER.debug("Associations.size() : " + associations.size());
+            LOGGER.trace("Associations.toString() : " + associations.toString());
 
-        model.putAll(populateModelWithAssociations(associations));
+            model.putAll(populateModelWithAssociations(associations));
 
-
+            status.setCode(Status.STATUS_OK);
+            status.setMessage("Success");
+        } catch (Exception e) {
+            LOGGER.error("Error thrown in GetAssociations WebScript", e);
+            status.setCode(Status.STATUS_INTERNAL_SERVER_ERROR);
+            status.setException(e);
+            status.setMessage(e.getMessage());
+        }
         return model;
     }
 
