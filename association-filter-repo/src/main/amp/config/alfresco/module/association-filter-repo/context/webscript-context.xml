@@ -39,4 +39,8 @@
 	<bean id="webscript.com.ixxus.associationFilters.associationsBySourceNodeRef.get"
 		  class="com.ixxus.associationFilter.api.webscripts.GetAssociationsBySourceNodeRef"
 		  parent="abstract-get-associations-webscript" />
+
+	<bean id="webscript.com.ixxus.associationFilters.associationsByFilterGroup.post"
+		  class="com.ixxus.associationFilter.api.webscripts.json.PostAssociationsByFilterGroup"
+		  parent="abstract-get-associations-webscript" />
 </beans>

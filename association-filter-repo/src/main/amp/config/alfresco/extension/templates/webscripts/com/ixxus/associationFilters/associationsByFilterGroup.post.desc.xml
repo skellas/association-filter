@@ -1,0 +1,42 @@
+<webscript>
+    <shortname>Association Filters - Get Associations By Filter Groups</shortname>
+    <description>
+        <![CDATA[
+          Find all Associations that fit the criterium passed in via
+          the JSON structure outlining the FilterGroupings.
+          Either a sourceNodeRef array or a targetNodeRef array is required per filter.
+
+          {
+            "filters" : [
+              {
+                "associationType": "references",
+                "sourceNodeRef" : [
+                    "workspace://SpaceStore/000000-fff-000-fffff-0000",
+                    "workspace://SpaceStore/000000-fff-000-fffff-0000",
+                    "workspace://SpaceStore/000000-fff-000-fffff-0000"
+                ]
+              },
+              {
+                "associationType": "alsoReferences",
+                "targetNodeRef" : [
+                    "workspace://SpaceStore/000000-fff-000-fffff-0000",
+                    "workspace://SpaceStore/000000-fff-000-fffff-0000",
+                    "workspace://SpaceStore/000000-fff-000-fffff-0000"
+                ]
+              }
+            ]
+          }
+
+          ]]>
+    </description>
+
+    <url>/ixxus/associationFilter/v1/associationsByFilterGroup</url>
+    <url>/ixxus/af/v1/abfg</url>
+
+    <args/>
+
+    <format default="json">argument</format>
+
+    <authentication>user</authentication>
+    <transaction allow="readonly"/>
+</webscript>

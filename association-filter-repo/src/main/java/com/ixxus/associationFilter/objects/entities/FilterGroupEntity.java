@@ -17,16 +17,16 @@ public class FilterGroupEntity implements Filter {
     }
     @Override public String filterString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("(");
         for (Filter childFilter : childFilters) {
             sb.append(queryModifier(sb));
+            sb.append("(");
             sb.append(childFilter.filterString());
+            sb.append(")");
         }
-        sb.append(")");
         return sb.toString();
     }
 
-    protected  String queryModifier(StringBuilder sb) { return sb.length() > 0 ? " AND " : "" ;}
+    protected  String queryModifier(StringBuilder sb) { return sb.length() > 0 ? " OR " : "" ;}
     @Override public String getAssociationType() throws Exception {
         throw new MethodNotImplementedException("FilterGroupEntity.getAssociatedType() Not Implemented");
     }
@@ -55,7 +55,7 @@ public class FilterGroupEntity implements Filter {
         this.childFilters.add(filter);
     }
     public void setChildFilters(Collection<Filter> filters) {
-        this.childFilters = (Set)filters;
+        this.childFilters = new HashSet<Filter>(filters);
     }
 
     @Override public boolean isValid() {

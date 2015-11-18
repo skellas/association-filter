@@ -76,8 +76,7 @@ public abstract class AbstractGetAssociations extends DeclarativeWebScript {
         for (NodeRef nodeRef : nodeRefs) {
             JSONObject resultObj = new JSONObject();
             LOGGER.debug("creating ScriptNode of nodeRef : " + nodeRef.toString());
-            ScriptNode scriptNode = new ScriptNode(nodeRef, serviceRegistry);
-            scriptNode.setScope(scope);
+            ScriptNode scriptNode = new ScriptNode(nodeRef, serviceRegistry,scope);
             resultObj.put("item", scriptNode);
             LOGGER.trace(scriptNode.toJSON(true).toString());
             results.add(resultObj);
@@ -95,4 +94,6 @@ public abstract class AbstractGetAssociations extends DeclarativeWebScript {
     public void setServiceRegistry(ServiceRegistry serviceRegistry) {
         this.serviceRegistry = serviceRegistry;
     }
+    protected ServiceRegistry getServiceRegistry() { return this.serviceRegistry; }
+
 }
