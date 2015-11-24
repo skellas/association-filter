@@ -1,5 +1,7 @@
 package com.ixxus.associationFilter.objects.entities;
 
+import java.util.Collection;
+
 /**
  * Created by Ixxus on 11/13/2015.
  */
@@ -17,6 +19,10 @@ public interface Filter {
     String getSourceNodeRef() throws Exception;
 
     void setSourceNodeRef(String sourceNodeRef) throws Exception;
+
+    Collection<Filter> getChildFilters() throws Exception;
+
+    void setChildFilters(Collection<Filter> childFilters) throws Exception;
 
     boolean isValid();
 }

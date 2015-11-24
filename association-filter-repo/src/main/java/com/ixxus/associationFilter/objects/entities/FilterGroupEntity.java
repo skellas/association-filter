@@ -12,6 +12,7 @@ import java.util.Set;
 public class FilterGroupEntity implements Filter {
     protected Set<Filter> childFilters;
 
+    public FilterGroupEntity(Collection<Filter> childFilters) { this.setChildFilters(childFilters);}
     public FilterGroupEntity() {
         this.childFilters = new HashSet<>();
     }
@@ -51,10 +52,11 @@ public class FilterGroupEntity implements Filter {
         throw new MethodNotImplementedException("FilterGroupEntity.setSourceNodeRef() Not Implemented");
     }
 
-    public void addChildFilter(Filter filter) {
-        this.childFilters.add(filter);
+    @Override public Collection<Filter> getChildFilters() {
+        return this.childFilters;
     }
-    public void setChildFilters(Collection<Filter> filters) {
+
+    @Override public void setChildFilters(Collection<Filter> filters) {
         this.childFilters = new HashSet<Filter>(filters);
     }
 

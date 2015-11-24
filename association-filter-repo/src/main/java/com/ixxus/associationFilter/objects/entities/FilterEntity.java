@@ -1,7 +1,10 @@
 package com.ixxus.associationFilter.objects.entities;
 
+import com.ixxus.associationFilter.objects.exceptions.MethodNotImplementedException;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.alfresco.service.namespace.QName;
+
+import java.util.Collection;
 
 /**
  * Created by Ixxus on 11/13/2015.
@@ -12,6 +15,11 @@ public class FilterEntity implements Filter{
     protected String targetNodeRef;
 
 
+    public FilterEntity(String sourceNodeRef, String associationType, String targetNodeRef) {
+        setSourceNodeRef(sourceNodeRef);
+        setAssociationType(associationType);
+        setTargetNodeRef(targetNodeRef);
+    }
     public FilterEntity(){
         this("","","");
     }
@@ -29,11 +37,6 @@ public class FilterEntity implements Filter{
             setTargetNodeRef(targetNodeRef.toString());
         }
     }
-    public FilterEntity(String sourceNodeRef, String associationType, String targetNodeRef) {
-        setSourceNodeRef(sourceNodeRef);
-        setAssociationType(associationType);
-        setTargetNodeRef(targetNodeRef);
-    }
     public String filterString() {
         StringBuilder sb = new StringBuilder();
         if (exists(this.getSourceNodeRef())) {
@@ -48,7 +51,6 @@ public class FilterEntity implements Filter{
             sb.append(queryModifier(sb));
             sb.append(" TargetNodeRef = " + '"' + this.getTargetNodeRef() + '"');
         }
-
         return sb.toString();
     }
 
@@ -87,6 +89,14 @@ public class FilterEntity implements Filter{
 
     public void setSourceNodeRef(String sourceNodeRef) {
         this.sourceNodeRef = sourceNodeRef;
+    }
+
+    @Override public Collection<Filter> getChildFilters() throws Exception {
+        throw new MethodNotImplementedException("FilterEntity.getChildFilters() Not Implemented");
+    }
+
+    @Override public void setChildFilters(Collection<Filter> childFilters) throws Exception {
+        throw new MethodNotImplementedException("FilterEntity.setChildFilters() Not Implemented");
     }
 
     /**
